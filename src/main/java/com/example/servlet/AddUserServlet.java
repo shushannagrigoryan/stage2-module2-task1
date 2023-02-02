@@ -29,6 +29,13 @@ public class AddUserServlet extends HttpServlet {
         }
 
     }
+    public static String getBaseUrl(HttpServletRequest request) {
+        String scheme = request.getScheme() + "://";
+        String serverName = request.getServerName();
+        String serverPort = (request.getServerPort() == 80) ? "" : ":" + request.getServerPort();
+        String contextPath = request.getContextPath();
+        return scheme + serverName + serverPort + contextPath;
+    }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //resp.setContentType("text/html");
@@ -42,7 +49,7 @@ public class AddUserServlet extends HttpServlet {
         req.setAttribute("user", user);
 
         try {
-            resp.sendRedirect("/add");
+            resp.sendRedirect(getBaseUrl(req) +"/add");
         }catch (IOException e){
             e.printStackTrace();
         }
