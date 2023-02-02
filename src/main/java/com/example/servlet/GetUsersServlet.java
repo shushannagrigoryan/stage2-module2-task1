@@ -18,7 +18,11 @@ public class GetUsersServlet extends HttpServlet {
         Set<User> users = Warehouse.getInstance().getUsers();
         req.setAttribute("users", users);
 
-        resp.sendRedirect("/users");
+        try {
+            resp.sendRedirect("/users");
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
     //write your code here!
 }

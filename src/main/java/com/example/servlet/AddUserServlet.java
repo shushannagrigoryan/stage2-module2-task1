@@ -20,7 +20,12 @@ public class AddUserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws  ServletException,IOException{
         String path = "/add";
         RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(path);
-        requestDispatcher.forward(req, resp);
+        try {
+            requestDispatcher.forward(req, resp);
+        }
+        catch(ServletException e){
+            e.printStackTrace();
+        }
 
     }
     @Override
@@ -35,8 +40,11 @@ public class AddUserServlet extends HttpServlet {
 
         req.setAttribute("user", user);
 
-        resp.sendRedirect("/add");
-
+        try {
+            resp.sendRedirect("/add");
+        }catch (IOException e){
+            e.printStackTrace();
+        }
 
     }
 
