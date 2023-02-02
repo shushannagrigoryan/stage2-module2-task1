@@ -19,12 +19,12 @@ public class GetUsersServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         Set<User> users = Warehouse.getInstance().getUsers();
         req.setAttribute("users", users);
-        //String path = "jsp/users.jsp";
-        String path = "/users";
+        String path = "jsp/users.jsp";
+        //String path = "/users";
         RequestDispatcher requestDispatcher = req.getRequestDispatcher(path);
         try{
             requestDispatcher.forward(req, resp);
-        }catch (ServletException e){
+        }catch (ServletException | IOException e){
             e.printStackTrace();
         }
 //        try {
