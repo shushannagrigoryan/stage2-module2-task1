@@ -19,7 +19,7 @@ public class AddUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws  ServletException,IOException{
         String path = "jsp/add.jsp";
-        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(path);
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher(path);
         try {
             requestDispatcher.forward(req, resp);
         }
